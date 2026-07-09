@@ -80,7 +80,8 @@ QA ha reportado que el siguiente payload enviado al endpoint `POST /books` provo
 ```
 
 **Instrucción:** Explique la causa del problema.
-
+R// No tiene un ID, no se está generando o verificando un ID que sea válido 
+    por ende la creacion del libro con el metodo POST no es posible y da un error.
 ---
 
 ### 6. Devolución de libros no prestados (20%)
