@@ -25,8 +25,9 @@ Actualmente:
 - Filtrar por **autor y género al mismo tiempo** provoca que el servidor falle.
 
 **Instrucción:** Explique la causa del problema y resuélvalo.
-R// 1- Se ha modificado de String a Enum, paso a ser Genre, y eso hacia 
-    que no recibiera correctamente el tipo de dato
+R// Los parámetros del método findByAuthorAndGenre() están invertidos. Se pasa genre como primer 
+parámetro y se convierte author a Genre, cuando debería ser al revés: author como String y genre 
+convertido a Genre.
 
 ---
 
@@ -35,8 +36,8 @@ R// 1- Se ha modificado de String a Enum, paso a ser Genre, y eso hacia
 Un usuario reportó que al pedir prestado el libro **The Selfish Gene**, devolverlo e intentar pedirlo prestado nuevamente, el servidor falla.
 
 **Instrucción:** Explique la causa del problema y resuélvalo.
-R // 2- El problema era en que al devolverlo y nuevamente querer perdirlo
-    no se cambiaba de estado por el condicional, por la disponibilidad del libro.
+R // El problema es que falta obtener el name del enum Genre en el método getGenresAvailable(). 
+    Sin .name(), book.getGenre() retorna un objeto Genre (enum), no un String.
 
 ---
 
@@ -80,8 +81,10 @@ QA ha reportado que el siguiente payload enviado al endpoint `POST /books` provo
 ```
 
 **Instrucción:** Explique la causa del problema.
-R// No tiene un ID, no se está generando o verificando un ID que sea válido 
-    por ende la creacion del libro con el metodo POST no es posible y da un error.
+R// El error se produce porque el valor del género enviado en la solicitud ("classic" en minúsculas) 
+no coincide con los valores definidos en el enum Genre, que están en mayúsculas, este intenta convertir 
+el string "classic" a un valor del enum, 
+pero Genre.valueOf() es case-sensitive y solo reconoce valores en mayúsculas.
 ---
 
 ### 6. Devolución de libros no prestados (20%)
