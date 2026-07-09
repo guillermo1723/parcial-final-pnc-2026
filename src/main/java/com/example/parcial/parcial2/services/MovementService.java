@@ -52,6 +52,11 @@ public class MovementService {
             }
         } else {
             book.setAvailableCount(book.getAvailableCount() + 1);
+            if (book.getAvailableCount() > 0) {
+                book.setAvailable(true);
+            }
+            // El problema era en que al devolverlo y nuevamente querer reservarlo
+            // no se cambiaba de estado por el condicional, por la disponibilidad del libro
         }
 
         bookRepository.save(book);

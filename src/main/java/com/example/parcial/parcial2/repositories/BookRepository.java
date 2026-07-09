@@ -18,5 +18,7 @@ public interface BookRepository extends JpaRepository<Book, UUID> {
 
     List<Book> findByGenre(Genre genre);
 
-    List<Book> findByAuthorAndGenre(String author, String genre);
+    List<Book> findByAuthorAndGenre(String author, Genre genre);
+    // 1- Se ha modificado de String a Enum, paso a ser Genre, y eso hacía
+    // que no recibiera correctamente el tipo de dato
 }

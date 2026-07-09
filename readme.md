@@ -1,4 +1,4 @@
-# [Nombre] [Carné]
+# Guillermo Alberto Guerrero Pereira 00044123
 
 ## Indicaciones
 
@@ -25,6 +25,8 @@ Actualmente:
 - Filtrar por **autor y género al mismo tiempo** provoca que el servidor falle.
 
 **Instrucción:** Explique la causa del problema y resuélvalo.
+R// 1- Se ha modificado de String a Enum, paso a ser Genre, y eso hacia 
+    que no recibiera correctamente el tipo de dato
 
 ---
 
@@ -33,6 +35,8 @@ Actualmente:
 Un usuario reportó que al pedir prestado el libro **The Selfish Gene**, devolverlo e intentar pedirlo prestado nuevamente, el servidor falla.
 
 **Instrucción:** Explique la causa del problema y resuélvalo.
+R // 2- El problema era en que al devolverlo y nuevamente querer perdirlo
+    no se cambiaba de estado por el condicional, por la disponibilidad del libro.
 
 ---
 
@@ -41,6 +45,8 @@ Un usuario reportó que al pedir prestado el libro **The Selfish Gene**, devolve
 Existe un endpoint que devuelve la cantidad de libros disponibles por género. Sin embargo, actualmente dicho endpoint falla.
 
 **Instrucción:** Explique la causa del problema y resuélvalo.
+R// Fallaba debido a que le hacía falta obtener el name en el metodo get 
+    que obtenia el género del libro.
 
 ---
 
@@ -53,6 +59,8 @@ GET /books?id=ed16ed1e-7017-4697-a08a-d28c09a74acf
 ```
 
 **Instrucción:** Explique la causa del problema.
+R// El problema es que al usar el metodo GET y querer obtener el libro con ese id
+    deberia de mostrar la información de ese libro unicamente, pero devuelve varios libros a la vez.
 
 ---
 

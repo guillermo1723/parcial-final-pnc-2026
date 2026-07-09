@@ -41,7 +41,7 @@ public class BookService {
 
     public List<Book> getAllBooks(String author, String genre) {
         if (author != null && genre != null) {
-            return bookRepository.findByAuthorAndGenre(genre, author);
+            return bookRepository.findByAuthorAndGenre(genre, Genre.valueOf(author));
         } else if (author != null) {
             return bookRepository.findByAuthor(author);
         } else if (genre != null) {
@@ -76,7 +76,8 @@ public class BookService {
         Map<String, Long> countByGenre = new HashMap<>();
 
         for (Book book : books) {
-            String genreName = book.getGenre().name();
+            String genreName = book.getGenre() != null ? book.getGenre().name() : "UNKNOWN";
+            // Fallaba debido a que le hacía falta obtener el name en el metodo get que obtenia el género del libro.
             countByGenre.put(genreName, countByGenre.getOrDefault(genreName, 0L) + 1);
         }
 
